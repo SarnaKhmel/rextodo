@@ -77,6 +77,7 @@
             </div>
         </div>
         <!-- /addTaskModal -->
+<!--
         <div id="updateTaskModal" class="modal">
             <div class="modal-background"></div>
             <div class="modal-card">
@@ -108,6 +109,7 @@
             </div>
         </div>
         <!-- /updateTaskModal -->
+<!--
         <div id="deleteTaskModal" class="modal">
             <div class="modal-background"></div>
             <div class="modal-card">
@@ -136,7 +138,7 @@
         </div>
 
         <!-- /DeleteTaskModal -->
-
+<!--
     </div>
 </template>
 
