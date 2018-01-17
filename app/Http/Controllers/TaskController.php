@@ -1,9 +1,8 @@
 <?php
-/*
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -12,27 +11,13 @@ class TaskController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $tasks = Task::where([user_id => Auth::user()->id])-get();
-        return response()->json([
-            'tasks' => $tasks
-        ],200);
-    }
-
-    public function store (Request $request){
-        $this->validate($request, [
-            'title' => 'required|max:255',
-            'description' => 'required',
-        ]);
-        $task = Task::create([
-         //   'title' => $request('title'),
-        //    'description' => $request('description'),
-            'user_id' =>Auth::user()->id
-        ]);
-        return response()->json([
-            'task' => $task,
-            'message' => 'Success'
-        ], 200);
+        return view('tasks');
     }
 }
