@@ -1,12 +1,3 @@
-<template>
-    
-</template>
-
-
-
-<style scoped>
-
-</style>
 <!--
 <template>
     <div class="columns">
@@ -37,6 +28,7 @@
                         <td>{{ index + 1 }}</td>
                         <td>{{ task.title }}</td>
                         <td>{{ task.description }}</td>
+                        <td>{{ task.time}}
                         <td>
                             <button @click="initUpdate(index)" class="button is-small is-info is-outlined">Edit</button>
                             <button @click="initDeleteTask(index)" class="button is-small is-danger is-outlined">Delete</button>
