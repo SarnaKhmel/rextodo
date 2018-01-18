@@ -19,6 +19,7 @@ class CreateTableTasks extends Migration
             $table->unsignedInteger('user_id');
             $table->text('description');
             $table->boolean('ended');
+            $table->string('email');
             $table->dateTime('time');
             $table->rememberToken();
             $table->timestamps();

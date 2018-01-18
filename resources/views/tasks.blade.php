@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container">
+        <a href="{{ url('/home') }}">
+            <button type="submit" class="btn btn-default" >
+                <i class="fa fa-plus"></i> All Tasks
+            </button>
+        </a>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
@@ -12,7 +17,8 @@
                                     <i class="fa fa-plus"></i> Add Task
                                 </button>
                             </div>
-                        </div></div>
+                        </div>
+                    </div>
 
                     <div class="panel-body">
 
