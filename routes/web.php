@@ -24,22 +24,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/tasks', function (){
     return view('tasks');
 });
-Route::post('/task', function (Request $request){
-    $validator = Validator::make($request->all(), [
-        'name'=> 'required|max:255',
-        ]);
-    if ($validator->fails()){
-        return redirect('/')
-        ->withInput()
-        ->withErrors($validator);
-    }
+Route::post('/taskCreate', 'TaskController@store')->name('task');
+Route::post('/task', function (){});
 
-    $task = new Task;
-    $task->name = $request->name;
-    $task->save();
 
-    return redirect('/');
-});
+
 
 Route::delete('/task/{function}', function( Task $task){
 

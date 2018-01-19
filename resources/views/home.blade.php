@@ -1,33 +1,40 @@
 @extends('layouts.app')
-
 @section('content')
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/public/css/app.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700%7COpen+Sans:400,300%7CLibre+Baskerville:400,400italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="../castom/assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../castom/assets/css/simple-line-icons.css">
-    <link rel="stylesheet" type="text/css" href="../castom/assets/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="../castom/assets/css/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="../castom/assets/css/jquery.timepicker.css">
-    <link rel="stylesheet" type="text/css" href="../castom/assets/css/vegas.min.css" >
-    <link rel="stylesheet" type="text/css" href="../castom/assets/css/global.css">
-    <link rel="stylesheet" type="text/css" href="../castom/assets/css/style.css" >
-    <script type="text/javascript" src="../castom/assets/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="../castom/assets/js/jquery-ui.js"></script>
-    <script type="text/javascript" src="../castom/assets/js/jquery.timepicker.min.js"></script>
-    <script type="text/javascript" src="../castom/assets/js/bootstrap.js"></script>
-    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-    <script src="../castom/assets/js/vegas.min.js"></script>
 
-    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
-    <script src="http://ubilabs.github.io/geocomplete/jquery.geocomplete.js"></script>
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+
+    <title>Bootstrap 3 Datepicker</title>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="./css/prettify-1.0.css" rel="stylesheet">
+    <link href="./css/base.css" rel="stylesheet">
+    <link href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+    <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+
     <div class="container">
         <a href="{{ url('/tasks') }}">
             <button type="submit" class="btn btn-default" >
@@ -40,7 +47,7 @@
                     <div class="panel-heading">All tasks
 
                         <!--add task-->
-                        <form action="{{ url('task')}}" method="POST" class="form-horizontal">
+                        <form action="{{ url('taskCreate')}}" method="POST" class="form-horizontal">
                             {{csrf_field()}}
 
                             <div class="col-md-7 col-md-offset-1">
@@ -52,60 +59,24 @@
                                 <input type="email" name="email" id="email" class="form-control" value="{{old('task')}}">
                                 <label>Deadline</label>
 
-                            <!--    <div class="input-wrap clearfix">
-                                    <input type="text" class="form-control time-pick" placeholder="07:00 am" id="timetwo" style="background:#ffffff;" title="Time in format 18/01/2018">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                </div>
-                            -->
-
-
-
-                                <div class="well">
-                                    <div  class="input-append date" id="datetimepicker1">
-                                        <input data-format="dd/MM/yyyy hh:mm:ss"  type="text"/>
-                                        <span class="add-on">
-                                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                                       </span>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='datetimepicker5'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                -->
-                                <div class="input-wrap clearfix">
-                                    <input type="text" class="form-control pick-date2" placeholder="06/11/2016" id="datetwo" style="background:#e9faff;" title="Дата прибуття у форматі 04/09/2016">
-                                    <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                                </div>
-
-                                <div class="input-wrap clearfix">
-                                    <input type="text" class="form-control time-pick" placeholder="07:00 am" id="timetwo" style="background:#dcfffc;" title="Час прибуття у форматі 04/09/2016">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                </div>
-
-                                <script>
-                                    $( document ).ready(function() {
-                                        $('#datetimepicker1').datepicker({
-                                            language: 'pt-BR'
-                                        });
-                                    });
-                                </script>
-
-                                <script>
-                                    $(function(){
-                                        //$('#dateone').datepicker();
-                                        $('#datetwo').datepicker();
-                                        // $('#timeone').timepicker();
-                                        $('#timetwo').timepicker();
-                                        /*$("#accordion").accordion();
-                                          $("#dialog").dialog();
-                                          $("#txtAddressk").geocomplete();
-                                          $("#txtAddressl").geocomplete();*/
-                                    });
-
-                                </script>
-
                             </div>
-
-
                             <div class="form-group">
                                 <div class="col-sm-offset-10">
+
                                     <button type="submit" class="btn btn-default">
                                         <i class="fa fa-plus"></i> Add Task
                                     </button>
