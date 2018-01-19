@@ -17,6 +17,17 @@
                                     <i class="fa fa-plus"></i> Add Task
                                 </button>
                             </div>
+                            <form action="{{ url('task')}}" method="POST" class="form-horizontal">
+                                {{csrf_field()}}
+                            <div class="col-md-7 col-md-offset-1">
+                                <label for="task-name" class="control-label">Title</label>
+                                <input type="text" name="title" id="title" class="form-control" value="{{old('task')}}">
+                                <label for="task-discription" class="control-label">Discription</label>
+                                <input type="text" name="discription" id="discription" class="form-control" value="{{old('task')}}">
+                                <label for="task-email" class="control-label">Email</label>
+                                <input type="email" name="email" id="email" class="form-control" value="{{old('task')}}">
+                                <label>Deadline</label>
+                            </div>
                         </div>
                     </div>
 
