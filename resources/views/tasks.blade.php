@@ -1,10 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
+
     <div class="container">
         <a href="{{ url('/home') }}">
             <button type="submit" class="btn btn-default" >
-                <i class="fa fa-plus"></i> All Tasks
+                <i class="fa "></i> All Tasks
             </button>
         </a>
         <div class="row">
@@ -26,7 +26,7 @@
                                 <label for="task-discription" class="control-label">Discription</label>
                                 <input type="text" name="discription" id="discription" class="form-control" value="{{old('task')}}">
                                 <label for="task-email" class="control-label">Email</label>
-                                <input type="email" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
+                                <input type="text" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
                                 <label>Deadline</label>
                             </div>
                             </form>

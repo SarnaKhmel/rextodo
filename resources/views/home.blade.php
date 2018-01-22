@@ -1,11 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-
     <div class="container">
         <a href="{{ url('/tasks') }}">
             <button type="submit" class="btn btn-default" >
-                <i class="fa fa-plus"></i> My Tasks
+                <i class="fa"></i> My Tasks
             </button>
         </a>
         <div class="row">
