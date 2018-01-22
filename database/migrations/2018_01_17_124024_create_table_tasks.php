@@ -34,4 +34,4 @@ class CreateTableTasks extends Migration
     {
         Schema::dropIfExists('tasks');
     }
-}7
+}

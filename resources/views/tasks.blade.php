@@ -13,6 +13,7 @@
                     <div class="panel-heading">My tasks
                         <div class="form-group">
                             <div class="col-sm-offset-10">
+
                                 <button type="submit" class="btn btn-default">
                                     <i class="fa fa-plus"></i> Add Task
                                 </button>
@@ -43,28 +44,7 @@
 
 
                         <div class="panel-body">
-                            <table class="table table-striped task-table">
-                                @foreach ($tasks as $task)
-                                    <tr>
 
-                                            <td class="table-text"><div>{{ $tasks->title }}</div></td>
-
-                                            <!-- Task Delete Button -->
-                                            <td>
-                                                <form action="{{url('home/' . $tasks->id)}}" method="POST">
-                                                    {{ csrf_field() }}
-                                                    {{ method_field('DELETE') }}
-                                                    <div>For User: {{ $tasks->email_us }}</div>
-                                                    <div>From User: {{ $tasks->user_id }}</div>
-                                                    <button type="submit" id="delete-task-{{ $tasks->id }}" class="btn btn-danger">
-                                                        <i class="fa fa-btn fa-trash"></i>Delete
-                                                    </button>
-                                                </form>
-                                            </td>
-
-                                    </tr>
-                                @endforeach
-                            </table>
                         </div>
                     </div>
                 </div>

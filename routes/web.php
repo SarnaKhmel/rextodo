@@ -21,17 +21,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::delete('/task/{task}', 'TaskController@destroy');
+
 Route::get('/tasks', function (){
     return view('tasks');
 });
-Route::post('/taskCreate', 'TaskController@store')->name('task');
+Route::post('/taskCreate', 'TaskController@store');
 Route::post('/task', function (){});
 
 
 
+//Route::get('/tasks', 'TaskController@index');
+//Route::get('/myTasks', 'TaskController@indexMyTasks');
+//Route::post('/task', 'TaskController@store')->name('task');
 
-Route::delete('/task/{function}', function( Task $task){
-
-});
-
-//Route::resourse('/task', 'TaskController');
