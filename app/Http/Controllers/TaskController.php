@@ -37,7 +37,7 @@ class TaskController extends Controller
             $this->validate($request, [
                 'title'=> 'required|max:255',
                 'description' => 'required|max:255',
-                'email_us' => 'required|max:255',
+                'email_us' => 'required',
             ]);
 
             $request->user()->tasks()->create([
