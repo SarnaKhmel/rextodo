@@ -15,11 +15,10 @@ class CreateTableTasks extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->string('title');
-            $table->unsignedInteger('user_id');
             $table->text('description');
-            $table->boolean('ended');
-            $table->string('email');
+            $table->string('email_us');
             $table->dateTime('time');
             $table->rememberToken();
             $table->timestamps();
@@ -35,4 +34,4 @@ class CreateTableTasks extends Migration
     {
         Schema::dropIfExists('tasks');
     }
-}
+}7

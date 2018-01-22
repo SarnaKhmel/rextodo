@@ -25,9 +25,10 @@
                                 <label for="task-discription" class="control-label">Discription</label>
                                 <input type="text" name="discription" id="discription" class="form-control" value="{{old('task')}}">
                                 <label for="task-email" class="control-label">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" value="{{old('task')}}">
+                                <input type="email" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
                                 <label>Deadline</label>
                             </div>
+                            </form>
                         </div>
                     </div>
 
@@ -42,7 +43,28 @@
 
 
                         <div class="panel-body">
+                            <table class="table table-striped task-table">
+                                @foreach ($tasks as $task)
+                                    <tr>
 
+                                            <td class="table-text"><div>{{ $tasks->title }}</div></td>
+
+                                            <!-- Task Delete Button -->
+                                            <td>
+                                                <form action="{{url('home/' . $tasks->id)}}" method="POST">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <div>For User: {{ $tasks->email_us }}</div>
+                                                    <div>From User: {{ $tasks->user_id }}</div>
+                                                    <button type="submit" id="delete-task-{{ $tasks->id }}" class="btn btn-danger">
+                                                        <i class="fa fa-btn fa-trash"></i>Delete
+                                                    </button>
+                                                </form>
+                                            </td>
+
+                                    </tr>
+                                @endforeach
+                            </table>
                         </div>
                     </div>
                 </div>

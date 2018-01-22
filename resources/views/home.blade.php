@@ -43,7 +43,7 @@
         </a>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
+
                     <div class="panel-heading">All tasks
 
                         <!--add task-->
@@ -53,10 +53,10 @@
                             <div class="col-md-7 col-md-offset-1">
                                 <label for="task-name" class="control-label">Title</label>
                                 <input type="text" name="title" id="title" class="form-control" value="{{old('task')}}">
-                                <label for="task-discription" class="control-label">Discription</label>
-                                <input type="text" name="discription" id="discription" class="form-control" value="{{old('task')}}">
+                                <label for="task-description" class="control-label">Discription</label>
+                                <input type="text" name="description" id="description" class="form-control" value="{{old('task')}}">
                                 <label for="task-email" class="control-label">Email</label>
-                                <input type="email" name="email" id="email" class="form-control" value="{{old('task')}}">
+                                <input type="email" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
                                 <label>Deadline</label>
 
                                 <div class="container">
@@ -96,9 +96,9 @@
 
 
                             </div>
-                        <div class="panel-body">
 
-                        </div>
+
+
                     </div>
                 </div>
             </div>
