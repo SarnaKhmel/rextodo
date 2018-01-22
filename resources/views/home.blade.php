@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/locales.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.css"></script>
 
     <div class="container">
         <a href="{{ url('/tasks') }}">
@@ -16,8 +19,7 @@
                         <!--add task-->
                         <form action="{{ url('taskCreate')}}" method="POST" class="form-horizontal">
                             {{csrf_field()}}
-
-                            <div class="col-md-7 col-md-offset-1">
+                            <div class="col-md-7 col-md-offset-1 ">
 
                                 <label for="task-name" class="control-label">Title</label>
                                 <input type="text" name="title" id="title" class="form-control" value="{{old('task')}}">
@@ -27,20 +29,14 @@
                                 <input type="email" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
                                 <label>Deadline</label>
 
-                                <div class="container">
-                                    <div class="row">
-                                        <div class='col-sm-6'>
-                                            <div class="form-group">
-                                                <div class='input-group date' id='datetimepicker5'>
-                                                    <input type='text' class="form-control" />
-                                                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                <div class="col-md-2">
+                                    <div class='input-group' id='calendar1'>
+                                        {!! Form::text('fromDate', $plan->fromDate, ["placeholder" => "2018-01-01 12:00:00"]) !!}
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-10">
@@ -73,5 +69,10 @@
                 </div>
             </div>
 
-
+    <script type="text/javascript">
+        $(function () {
+            $('#calendar1').datetimepicker();
+            $('#calendar2').datetimepicker();
+        });
+    </script>
 @endsection
