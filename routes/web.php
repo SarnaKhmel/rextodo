@@ -26,6 +26,8 @@ Route::delete('/task/{task}', 'TaskController@destroy');
 Route::get('/tasks', function (){
     return view('tasks');
 });
+Route::get('/home', 'searchController@search');
+
 Route::post('/taskCreate', 'TaskController@store');
 Route::post('/task', function (){});
 

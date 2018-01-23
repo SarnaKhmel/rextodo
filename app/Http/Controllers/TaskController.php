@@ -38,12 +38,14 @@ class TaskController extends Controller
                 'title'=> 'required|max:255',
                 'description' => 'required|max:255',
                 'email_us' => 'required',
+                'dateTime' => 'required'
             ]);
 
             $request->user()->tasks()->create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'email_us' => $request->email_us,
+                'dateTime' => $request->time,
             ]);
             return redirect('/tasks');
         }
