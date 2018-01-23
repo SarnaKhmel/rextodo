@@ -36,18 +36,18 @@ class TaskController extends Controller
         if(Auth::check()){
             $this->validate($request, [
                 'title'=> 'required|max:255',
-                'description' => 'required',
+                'description' => 'required|max:500',
                 'email_us' => 'required|email|max:255',
                 'dateTime' => 'required'
             ]);
-            var_dump($request);
+          //  var_dump($request);
             $request->user()->tasks()->create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'email_us' => $request->email_us,
                 'dateTime' => $request->time,
             ]);
-            return redirect('/tasks');
+           // return redirect('/tasks');
         }
         return redirect('/home');
     }
@@ -68,5 +68,5 @@ class TaskController extends Controller
         }
         return "Error, ";
     }
-    public function returnAllTasks(){}
+
 }

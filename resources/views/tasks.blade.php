@@ -51,7 +51,7 @@
                                     <li id="{{$ololo["id"]}}" >
                                         <span class="text"> {{$ololo['title']}}</span>
                                         <span class="text"> {{$ololo['description']}}</span>
-                                        <span class="text"> {{$ololo['email_us']}}</span>
+                                       <span class="text"> {{$ololo['email_us']}}</span>
                                         <span class="text"> {{$ololo['time']}}</span>
                                     </li>
                                     @endforeach

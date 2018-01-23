@@ -28,6 +28,15 @@ class HomeController extends Controller
     public function SetTask(){
 
     }
+    public function returnAllTasks(){
+
+        if (Auth::check()){
+
+            $data =Task::get()->toArray();
+            return view('tasks',['data'=>$data]);
+        }
+        return "Error, ";
+    }
     /*protected function validator(array $data)
     {
         return Validator::make($data, [
