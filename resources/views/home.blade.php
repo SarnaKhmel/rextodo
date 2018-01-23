@@ -20,13 +20,7 @@
                <div class="panel-heading">All tasks
                   <br><label for="task-name" class="control-label">Add task for user.</label>
                         <!--add task-->
-                        <div class="col-md-7 col-md-offset-1">
-                            <form method="GET">
-                                <input type="text" name="name">
-                               <!-- <input type="checkbox" name="hasCoffeeMachine" value="1"><span> Apply Filter</span>
-                            --></form>
-                        </div>
-                     <form action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
+                         <form action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
                          <div class="col-md-7 col-md-offset-1 ">
                          <label for="task-name" class="control-label">Title</label>
                          <input type="text" name="title" id="title" class="form-control" value="{{old('task')}}">

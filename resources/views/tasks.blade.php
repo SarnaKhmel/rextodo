@@ -26,9 +26,9 @@
                             <label for="task-name" class="control-label">Title</label>
                             <input type="text" name="title" id="title" class="form-control" value="{{old('task')}}">
                             <label for="task-description" class="control-label">Discription</label>
-                            <input type="text" name="description" id="description" class="form-control" value="{{old('task')}}">
+                            <textarea type="text" name="description" id="description" class="form-control" value="{{old('task')}}"></textarea>
                             <label for="task-email" class="control-label">Email</label>
-                            <input type="email" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
+                            <input type="text" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
                             <label>Deadline</label>
                             <input name="dateTime" id="dateTime" class="timepicker form-control" type="datetime-local">
                             <script type="text/javascript">
@@ -46,6 +46,16 @@
                             </div>
                         </div>
                     </form>
+                            <ul class="todo-list ui-sortable">
+                                @foreach($data as $ololo)
+                                    <li id="{{$ololo["id"]}}" >
+                                        <span class="text"> {{$ololo['title']}}</span>
+                                        <span class="text"> {{$ololo['description']}}</span>
+                                        <span class="text"> {{$ololo['email_us']}}</span>
+                                        <span class="text"> {{$ololo['time']}}</span>
+                                    </li>
+                                    @endforeach
+                            </ul>
                 </div>
                 <div class="panel-body">
                     @if (session('status'))
