@@ -38,8 +38,10 @@ class TaskController extends Controller
                 'title'=> 'required|max:255',
                 'description' => 'required|max:255',
                 'email_us' => 'required|max:255',
-            ]);
+                'dateTime' => 'required'
 
+            ]);
+            var_dump($request);
             $request->user()->tasks()->create([
                 'title' => $request->title,
                 'description' => $request->description,
@@ -56,4 +58,15 @@ class TaskController extends Controller
         $task->delete();
         return redirect('/tasks');
     }
+    public function returnMyTasks(){
+
+        if (Auth::check()){
+            $user_id = Auth::id();
+            $data =Task::where('user_id', $user_id)
+                ->get()->toArray();
+            return view('tasks',['data'=>$data]);
+        }
+        return "Error, ";
+    }
+    public function returnAllTasks(){}
 }

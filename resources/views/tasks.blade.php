@@ -21,9 +21,9 @@
                             <label for="task-name" class="control-label">Title</label>
                             <input type="text" name="title" id="title" class="form-control" value="{{old('task')}}">
                             <label for="task-description" class="control-label">Discription</label>
-                            <input type="text" name="description" id="description" class="form-control" value="{{old('task')}}">
+                            <textarea type="text" name="description" id="description" class="form-control" value="{{old('task')}}"></textarea>
                             <label for="task-email" class="control-label">Email</label>
-                            <input type="email" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
+                            <input type="text" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
                             <label>Deadline</label>
 
                             <div class="container">
@@ -50,6 +50,16 @@
                             </div>
                         </div>
                     </form>
+                            <ul class="todo-list ui-sortable">
+                                @foreach($data as $ololo)
+                                    <li id="{{$ololo["id"]}}" >
+                                        <span class="text"> {{$ololo['title']}}</span>
+                                        <span class="text"> {{$ololo['description']}}</span>
+                                        <span class="text"> {{$ololo['email_us']}}</span>
+                                        <span class="text"> {{$ololo['time']}}</span>
+                                    </li>
+                                    @endforeach
+                            </ul>
                 </div>
 
                 <div class="panel-body">
@@ -60,29 +70,6 @@
                         </div>
                     @endif
 
-                    @if(count($tasks)>=0)
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                              Tasks
-                            </div>
-                        </div>
-                            <div class="panel-body">
-                            <table class="table table-stripped task-table">
-                                <thead>
-                                <th>Task</th>
-                                <th>&nbsp;</th>
-                                </thead>
-                                <tbody>
-                                @foreach($tasks as $task)
-
-                                    @endforeach
-                                    <tr>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                            </div>
-                        @endif
 
 
 

@@ -19,7 +19,7 @@ class CreateTableTasks extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('email_us');
-            $table->dateTime('time');
+            $table->timestamp('time');
             $table->rememberToken();
             $table->timestamps();
         });

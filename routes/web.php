@@ -23,9 +23,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::delete('/task/{task}', 'TaskController@destroy');
 
+//<<<<<<< HEAD
 Route::get('/tasks', function (){
     return view('tasks');
 });
+//=======
+Route::get('/tasks', 'TaskController@returnMyTasks');
+
+//>>>>>>> 3dc88a1... 12th return from db
 Route::post('/taskCreate', 'TaskController@store');
 Route::post('/task', function (){});
 
