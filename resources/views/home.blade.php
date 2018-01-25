@@ -18,13 +18,13 @@
                         <!--add task-->
 
                         <div action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
-                            <div class="col-md-7 col-md-offset-1 ">
+                            <div class="col-md-7 col-md-offset-2 ">
                                 <form action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
-                                    <div class="col-md-7 col-md-offset-1 ">
+                                    <div class="col-md-7 col-md-offset-3 ">
                                           <label for="task-name" class="control-label">Title</label>
                                           <input type="text" name="title" id="title" class="form-control" value="{{old('task')}}">
                                           <label for="task-description" class="control-label">Discription</label>
-                                          <input type="text" name="description" id="description" class="form-control" value="{{old('task')}}">
+                                          <textarea type="text" name="description" id="description" class="form-control" value="{{old('task')}}"></textarea>
                                           <label for="task-email" class="control-label">Email</label>
                                           <input type="email" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
                                           <label>Deadline</label>
