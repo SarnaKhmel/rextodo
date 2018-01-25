@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Http;
 use App\User;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+
+
 
 
 class TaskController extends Controller
@@ -20,22 +20,10 @@ class TaskController extends Controller
       // $this->tasks = $tasks;
     }
 
-    public function index(Request $request){
-        return view('tasks.index', [
-            'tasks' => $this->tasks->forUser($request->user()),
-        ]);
-    }
 
-    public function indexMyTasks(Request $request)
-    {
-        return view('tasks.myTasks', [
-            'tasks' => $this->tasks->forUser($request->user()),
-        ]);
-    }
     public function create(Request $request)
     {
-       dd($request->all());
-       print_r($request->all());
+       //dd($request->all());
         if(Auth::check()){
             $this->validate($request, [
                 // Auth::user()=>'required',
@@ -59,10 +47,11 @@ class TaskController extends Controller
 
     public function delete(Request $request)
     {
-        dd($request->all());
+      //  dd($request->all());
       if(Auth::check()){
-          $task = Task::Find($request->id());
-          $task -> delete();
+          $id = $request->id;
+          $task = Task::Find($id);
+          $task->delete();
               return view('/tasks');
           }
           return response('Error! ');
@@ -85,5 +74,6 @@ class TaskController extends Controller
             $users = User::all()->toArray();
             return view('home', ['dataAll'=> $dataAll, 'users'=> $users]);
         }
+        return "Error....";
     }
 }
