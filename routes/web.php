@@ -21,23 +21,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::delete('/task/{task}', 'TaskController@destroy');
 
-//<<<<<<< HEAD
+
 Route::get('/tasks', function (){
     return view('tasks');
 });
-//=======
 Route::get('/tasks', 'TaskController@returnMyTasks');
 Route::get('/home', 'TaskController@returnAllTasks');
 
-//>>>>>>> 3dc88a1... 12th return from db
-Route::post('/taskCreate', 'TaskController@store');
-Route::post('/task', function (){});
-
-
-
-//Route::get('/tasks', 'TaskController@index');
-//Route::get('/myTasks', 'TaskController@indexMyTasks');
-//Route::post('/task', 'TaskController@store')->name('task');
+Route::post('/taskCreate', 'TaskController@create');
+Route::any('/deleteTask/{id}', ['as' => 'delete-task', 'uses' => 'TaskController@delete']);
+//Route::post('/task', function (){});
 

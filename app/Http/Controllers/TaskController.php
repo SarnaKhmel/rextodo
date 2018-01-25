@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Task;
-
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use Illuminate\Mail\Mailer;
+use Illuminate\Support\Facades\DB;
+
 
 class TaskController extends Controller
 {
@@ -32,32 +32,41 @@ class TaskController extends Controller
             'tasks' => $this->tasks->forUser($request->user()),
         ]);
     }
-    public function store(Request $request)
+    public function create(Request $request)
     {
+       dd($request->all());
+       print_r($request->all());
         if(Auth::check()){
             $this->validate($request, [
+                // Auth::user()=>'required',
                 'title'=> 'required|max:255',
                 'description' => 'required|max:255',
                 'email_us' => 'required|max:255',
                 'dateTime' => 'required'
 
             ]);
-         //   var_dump($request);
+         //  var_dump($request);
             $request->user()->tasks()->create([
                 'title' => $request->title,
                 'description' => $request->description,
                 'email_us' => $request->email_us,
+                'dateTime' => $request->time,
             ]);
-            return redirect('/tasks');
+            return back();
         }
         return redirect('/home');
     }
-    public function destroy(Request $request, Task $task)
+
+    public function delete(Request $request)
     {
-      if(Auth::check()) {
-          $task->delete();
-          return redirect('/tasks');
-      }
+        dd($request->all());
+      if(Auth::check()){
+          $task = Task::Find($request->id());
+          $task -> delete();
+              return view('/tasks');
+          }
+          return response('Error! ');
+
     }
     public function returnMyTasks(){
 
