@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
+use App\Task;
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Mail\Mailer;
-use App\Task;
 
 class TaskController extends Controller
 {
@@ -53,10 +54,10 @@ class TaskController extends Controller
     }
     public function destroy(Request $request, Task $task)
     {
-      // $this->authorize('destroy', $tasks);
-      //  $task->delete();
-        $task->delete();
-        return redirect('/tasks');
+      if(Auth::check()) {
+          $task->delete();
+          return redirect('/tasks');
+      }
     }
     public function returnMyTasks(){
 

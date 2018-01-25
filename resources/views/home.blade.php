@@ -18,7 +18,7 @@
                         <!--add task-->
 
                         <div action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
-                            <div class="col-md-7 col-md-offset-2 ">
+                            <div class="col-md-10 ">
                                 <form action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
                                     <div class="col-md-7 col-md-offset-3 ">
                                           <label for="task-name" class="control-label">Title</label>
@@ -46,21 +46,43 @@
                             </div>
                         </div>
             </div>
-            <div class="col-md-7">
+
+    </div>
+       </div>
+        </div>
+    <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Current Tasks
+        </div>
+    <div class="panel-body">
+        <table class="table table-striped task-table">
+
             <ul class="todo-list ui-sortable">
                 @foreach($dataAll as $allTasks)
                     <li id="{{$allTasks["id"]}}" >
-                        <span class="text"> {{$allTasks['title']}}</span>
-                        <span class="text"> {{$allTasks['description']}}</span>
-                        <span class="text"> {{$allTasks['email_us']}}</span>
-                        <span class="text"> {{$allTasks['time']}}</span>
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <div class="col-md-offset-1 buttons">
+                            <div class="title"><strong>Title: <span class="text"> {{$allTasks['title']}}</span></strong></div>
+                            <div class="description">Descroption: <span class="text"> {{$allTasks['description']}}</span></div>
+                            <div class="email">For user: <span class="text"> {{$allTasks['email_us']}}</span></div>
+                            <div class="user">From user: <span class="text"> {{$allTasks['user_id']}}</span> </div>
+                            <div class="deadline">Deadline: <span class="text"> {{$allTasks['time']}}</span></div>
+                            <button type="submit"  class="btn btn-danger">
+                                <i class="fa fa-btn fa-trash"></i>Delete
+                            </button>
+                        </div>
+
                     </li>
                 @endforeach
             </ul>
-        </div>
-       </div>
-        </div>
+
+        </table>
     </div>
+    </div>
+    </div>
+
                     <div class="panel-body">
 
                         @if (session('status'))
