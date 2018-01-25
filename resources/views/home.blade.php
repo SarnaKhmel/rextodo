@@ -45,8 +45,20 @@
                                 </form>
                             </div>
                         </div>
-                </div>
             </div>
+            <div class="col-md-7">
+            <ul class="todo-list ui-sortable">
+                @foreach($dataAll as $allTasks)
+                    <li id="{{$allTasks["id"]}}" >
+                        <span class="text"> {{$allTasks['title']}}</span>
+                        <span class="text"> {{$allTasks['description']}}</span>
+                        <span class="text"> {{$allTasks['email_us']}}</span>
+                        <span class="text"> {{$allTasks['time']}}</span>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+       </div>
         </div>
     </div>
                     <div class="panel-body">

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-
+use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Mail\Mailer;
@@ -41,7 +41,7 @@ class TaskController extends Controller
                 'dateTime' => 'required'
 
             ]);
-            var_dump($request);
+         //   var_dump($request);
             $request->user()->tasks()->create([
                 'title' => $request->title,
                 'description' => $request->description,
@@ -63,10 +63,17 @@ class TaskController extends Controller
         if (Auth::check()){
             $user_id = Auth::id();
             $data =Task::where('user_id', $user_id)
-                ->get()->toArray();
+               ->get()->toArray();
             return view('tasks',['data'=>$data]);
         }
         return "Error, ";
     }
-    public function returnAllTasks(){}
+    public function returnAllTasks(){
+        if(Auth::check()){
+            $user_id = Auth::id();
+            $dataAll = Task::all()->toArray();
+            $users = User::all()->toArray();
+            return view('home', ['dataAll'=> $dataAll, 'users'=> $users]);
+        }
+    }
 }

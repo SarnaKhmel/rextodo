@@ -29,6 +29,7 @@ Route::get('/tasks', function (){
 });
 //=======
 Route::get('/tasks', 'TaskController@returnMyTasks');
+Route::get('/home', 'TaskController@returnAllTasks');
 
 //>>>>>>> 3dc88a1... 12th return from db
 Route::post('/taskCreate', 'TaskController@store');
