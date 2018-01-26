@@ -12,98 +12,71 @@
             </a>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel-heading">All tasks
-                        <br><label for="task-name" class="control-label">Add task for user.</label>
-                        <!--add task-->
-                        <div action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
-                            <div class="col-md-10 ">
-                                <form action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
-                                    <div class="col-md-7 col-md-offset-3 ">
-                                          <label for="task-name" class="control-label">Title</label>
-                                          <input type="text" name="title" id="title" class="form-control" value="{{old('task')}}">
-                                          <label for="task-description" class="control-label">Discription</label>
-                                          <textarea type="text" name="description" id="description" class="form-control" value="{{old('task')}}"></textarea>
-                                          <label for="task-email" class="control-label">Email</label>
-                                          <input type="email" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
-                                          <label>Deadline</label>
-                                          <input name="dateTime" id="dateTime" class="timepicker form-control" type="datetime-local">
-                                             <script type="text/javascript">
-                                                 $('.timepicker').datetimepicker({
-                                                     format: 'HH:ss:mm'
-                                                 });
-                                             </script>
-                                    </div>
-                                    <div class="form-group">
-                                    <div class="col-sm-offset-10">
-                                        <button type="submit" class="btn btn-default">
-                                        <i class="fa fa-plus"></i> Add Task
-                                        </button>
-                                    </div>
-                                    </div>
+                <div class=" panel panel-body">
+                  <div class="panel-heading">All tasks
+                    <br><label for="task-name" class="control-label">Add task for user.</label>
+                      <div action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
+                        <div class="col-md-10 ">
+                          <form action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
+                            <div class="col-md-7 col-md-offset-3 ">
+                                <label for="task-name" class="control-label">Title</label>
+                                <input type="text" name="title" id="title" class="form-control" value="{{old('task')}}">
+                                <label for="task-description" class="control-label">Discription</label>
+                                <textarea type="text" name="description" id="description" class="form-control" value="{{old('task')}}"></textarea>
+                                <label for="task-email" class="control-label">Email</label>
+                                <input type="email" name="email_us" id="email_us" class="form-control" value="{{old('task')}}">
+                                <label>Deadline</label>
+                                <input name="dateTime" id="dateTime" class="timepicker form-control" type="datetime-local">
+                                        <script type="text/javascript">
+                                            $('.timepicker').datetimepicker({
+                                                format: 'HH:ss:mm'
+                                            });
+                                        </script>
+                            </div>
+                               <div class="form-group">
+                                  <div class="col-sm-offset-10">
+                                     <button type="submit" class="btn btn-default">
+                                     <i class="fa fa-plus"></i> Add Task
+                                     </button>
+                                  </div>
+                               </div>
+                          </form>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                    <!-- Return tasks -->
+                     <div class="col-md-push-8 col-md-offset-2">
+                         <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Current Tasks
+                            </div>
+                                <div class="panel-body">
+                                    @foreach($dataAll as $returnTasks)
 
-                                </form>
-                                    @foreach($dataAll as $allTasks)
-
-                                        <form action="{{ route('delete-task', ['id' => $allTasks['id']]) }}" method="post">
+                                        <form action="{{ route('delete-task', ['id' => $returnTasks['id']]) }}" method="post">
                                             {{ csrf_field() }}
-                                            <div class="col-md-offset-1 buttons">
-                                                <div class="title"><strong>Title: <span class="text"> {{$allTasks['title']}}</span></strong></div>
-                                                <div class="description">Descroption: <span class="text"> {{$allTasks['description']}}</span></div>
-                                                <div class="user">From user: <span class="text"> {{$allTasks['user_id']}}</span> </div>
-                                                <div class="deadline">Deadline: <span class="text"> {{$allTasks['time']}}</span></div>
-                                                <div class="pull-right">
-                                                    <button type="submit">Delete</button>
+                                            <li id="{{$returnTasks["id"]}}" >
+                                                <div class="col-md-offset-1 buttons">
+                                                    <div class="title"><strong>Title: <span class="text"> {{$returnTasks['title']}}</span></strong>
+                                                        <button type="submit" class="btn btn-danger pull-right">Delete</button>
+                                                    </div>
+                                                    <div class="description">Descroption: <span class="text"> {{$returnTasks['description']}}</span></div>
+                                                    <div class="user">From user: <span class="text"> {{$returnTasks['user_id']}}</span> </div>
+                                                    <div class="user_em">For user: <span class="text">{{$returnTasks['email_us']}}</span> </div>
+                                                    <div class="deadline">Deadline: <span class="text"> {{$returnTasks['time']}}</span></div>
                                                 </div>
-
-                                            </div>
+                                            </li>
                                         </form>
-
                                     @endforeach
-
-
-                            </div>
-                        </div>
-           </div>
-
-       </div>
+                                </div>
+                         </div>
+                     </div>
+            </div>
         </div>
-
-    <div class="col-md-8 col-md-offset-2">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Current Tasks
-        </div>
-    <div class="panel-body">
-        <table class="table table-striped task-table">
-
-            <ul class="todo-list ui-sortable">
-
-                @foreach($dataAll as $allTasks)
-
-                    <form action="{{ route('delete-task', ['id' => $allTasks['id']]) }}" method="post">
-                        <input type="text" name="test">
-                        {{ csrf_field() }}
-                        <div class="col-md-offset-1 buttons">
-                            <div class="title"><strong>Title: <span class="text"> {{$allTasks['title']}}</span></strong></div>
-                            <div class="description">Descroption: <span class="text"> {{$allTasks['description']}}</span></div>
-                            <div class="email">For user: <span class="text"> {{$allTasks['email_us']}}</span></div>
-                            <div class="user">From user: <span class="text"> {{$allTasks['user_id']}}</span> </div>
-                            <div class="deadline">Deadline: <span class="text"> {{$allTasks['time']}}</span></div>
-                            <div class="pull-right">
-                                <button type="submit">Delete</button>
-                            </div>
-
-                        </div>
-                    </form>
-
-                @endforeach
-
-            </ul>
-
-        </table>
-    </div>
-    </div>
     </div>
 
-    </div>
+
+
+
 @endsection

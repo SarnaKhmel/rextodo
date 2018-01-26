@@ -8,7 +8,7 @@
     <div class="container">
         <a href="{{ url('/home') }}">
             <button type="submit" class="btn btn-default" >
-                <i class="fa fa-plus"></i> My Tasks
+                <i class="fa fa-plus"></i> All tasks
             </button>
         </a>
         <div class="row">
@@ -48,15 +48,21 @@
                 </div>
                 <div class="col-md-7">
                     <ul class="todo-list ui-sortable">
-                        @foreach($data as $ololo)
-                            <li id="{{$ololo["id"]}}" >
-                                <span class="text"> {{$ololo['title']}}</span>
-                                <span class="text"> {{$ololo['description']}}</span>
-                                <span class="text"> {{$ololo['email_us']}}</span>
-                                <span class="text"> {{$ololo['time']}}</span>
-                                   <span class="glyphicon glyphicon-remove-circle" onclick="" title="Видалити таск"></span>
-
-                            </li>
+                        @foreach($data as $returnTasks)
+                            <form action="{{ route('delete-task', ['id' => $returnTasks['id']]) }}" method="post">
+                                {{ csrf_field() }}
+                                <li id="{{$returnTasks["id"]}}" >
+                                    <div class="col-md-offset-1 buttons">
+                                        <div class="title"><strong>Title: <span class="text"> {{$returnTasks['title']}}</span></strong>
+                                            <button type="submit" class="btn btn-danger pull-right">Delete</button>
+                                        </div>
+                                        <div class="description">Descroption: <span class="text"> {{$returnTasks['description']}}</span></div>
+                                        <div class="user">From user: <span class="text"> {{$returnTasks['user_id']}}</span> </div>
+                                        <div class="user_em">For user: <span class="text">{{$returnTasks['email_us']}}</span> </div>
+                                        <div class="deadline">Deadline: <span class="text"> {{$returnTasks['time']}}</span></div>
+                                    </div>
+                                </li>
+                            </form>
                         @endforeach
                     </ul>
                 </div>
@@ -64,13 +70,6 @@
         </div>
     </div>
     <div class="panel-body">
-
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
-
     </div>
 @endsection
 

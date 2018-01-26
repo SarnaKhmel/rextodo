@@ -47,14 +47,17 @@ class TaskController extends Controller
 
     public function delete(Request $request)
     {
-      //  dd($request->all());
+
       if(Auth::check()){
           $id = $request->id;
           $task = Task::Find($id);
-          $task->delete();
-              return view('/tasks');
+          if($task != null) {
+              $task->delete();
+              return back();
           }
           return response('Error! ');
+          }
+
 
     }
     public function returnMyTasks(){
