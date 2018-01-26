@@ -9,7 +9,7 @@ class Task extends Model
 {
     //
     protected $fillable = [
-        'title', 'description', 'email', 'time'
+        'title', 'description', 'email_us', 'time'
     ];
 
     protected $casts = [
@@ -21,5 +21,7 @@ class Task extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
 }
 

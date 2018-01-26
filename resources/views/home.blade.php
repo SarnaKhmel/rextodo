@@ -48,37 +48,42 @@
             </div>
         </div>
                     <!--Search tasks-->
-                    <div class="col-md-push-8 col-md-offset-2">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Task searching.
-                            </div>
-                            <form method="post" action="">
-                                <div class="panel-body">
-                                    <input type="text"  class="form-control"  id="search" name="search">
-                                    <table class="table table-bordered table-hover"></table>
-                                </div>
-                                <table class="table table-bordered table-hover">
+        <form action="/search" method="POST" role="search">
+            {{ csrf_field() }}
+            <div class="input-group">
+                <input type="text" class="form-control" name="searchTitle"
+                       placeholder="Search tasks"> <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </span>
+            </div>
+        </form>
 
-                                </table>
-                            </form>
-                        </div>
-                    </div>
-                  <!--
-        <script type="text/javascript">
-            $('#search').on('keyup',function(){
-                $value=$(this).val();
-                $.ajax({
-                    type : 'get',
+        <div class="container">
+            @if(isset($details))
+                <p> The Search results for your query <b> {{ $query }} </b> are :</p>
+                <h2>Sample User details</h2>
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Discroption</th>
+                        <th>Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($details as $title)
+                        <tr>
+                            <td>{{$title->name}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endif
+        </div>
 
-                    data:{'search':$value},
-                    success:function(data){
-                        $('tbody').html(data);
-                    }
-                });
-            })
-        </script>
-        -->
+
                     <!-- Return tasks -->
                   <div class="row">
                      <div class="col-md-push-8 col-md-offset-2">
@@ -108,8 +113,6 @@
                          </div>
                      </div>
                   </div>
-        <script type="text/javascript">
-            $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-        </script>
+
 
 @endsection

@@ -7,7 +7,7 @@ use App\Http;
 use App\User;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
-
+use App\Services\Auth\JwtGuard;
 
 
 
@@ -23,23 +23,23 @@ class TaskController extends Controller
 
     public function create(Request $request)
     {
-       //dd($request->all());
+        //dd(Auth::user()->);
         if(Auth::check()){
-            $this->validate($request, [
-                // Auth::user()=>'required',
-                'title'=> 'required|max:255',
-                'description' => 'required|max:255',
-                'email_us' => 'required|max:255',
-                'dateTime' => 'required'
-
+            $input = $request->only([
+               'title',
+               'description',
+               'dateTime',
+               'email_us'
             ]);
-         //  var_dump($request);
-            $request->user()->tasks()->create([
-                'title' => $request->title,
-                'description' => $request->description,
-                'email_us' => $request->email_us,
-                'dateTime' => $request->time,
-            ]);
+           // dd($input);
+            dd(Auth::user());
+            $task = new Task;
+            $task -> user_id = Auth::user()->attributes['email'];
+            $task -> title = $input['title'];
+            $task -> description = $input['description'];
+            $task -> time = $input['dateTime'];
+            $task -> email_us = $input['email_us'];
+            $task ->save();
             return back();
         }
         return redirect('/home');

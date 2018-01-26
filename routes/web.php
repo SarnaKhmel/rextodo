@@ -28,4 +28,10 @@ Route::get('/home', 'TaskController@returnAllTasks');
 Route::post('/taskCreate', 'TaskController@create');
 Route::any('/deleteTask/{id}', ['as' => 'delete-task', 'uses' => 'TaskController@delete']);
 
-Route::get('/search', 'searchController@searchUp');
+/*Route::any('/search', function(){
+    $searchTitle = Input::get('title');
+    $title = Title::where('title','LIKE','%'.$searchTitle.'%')->get();
+    if(count($title)>0)
+        return view('home')->withDetails($title)->withQuery($searchTitle);
+    else return view('home')->withMessage('No details found.');
+});*/

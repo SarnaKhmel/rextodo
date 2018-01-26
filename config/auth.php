@@ -35,18 +35,25 @@ return [
     |
     */
 
+
     'guards' => [
         'web' => [
-            'driver' => 'session',
+            'driver'   => 'session',
             'provider' => 'users',
         ],
-
         'api' => [
-            'driver' => 'token',
+            'driver'   => 'token',
+            'provider' => 'users',
+        ],
+        'user' => [
+            'driver'   => 'session',
+            'provider' => 'users',
+        ],
+        'administrator' => [
+            'driver'   => 'session',
             'provider' => 'users',
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | User Providers
