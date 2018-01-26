@@ -45,7 +45,42 @@
                       </div>
                   </div>
                 </div>
+            </div>
+        </div>
+                    <!--Search tasks-->
+                    <div class="col-md-push-8 col-md-offset-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Task searching.
+                            </div>
+                            <form method="post" action="">
+                                <div class="panel-body">
+                                    <input type="text"  class="form-control"  id="search" name="search">
+                                    <table class="table table-bordered table-hover"></table>
+                                </div>
+                                <table class="table table-bordered table-hover">
+
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                  <!--
+        <script type="text/javascript">
+            $('#search').on('keyup',function(){
+                $value=$(this).val();
+                $.ajax({
+                    type : 'get',
+
+                    data:{'search':$value},
+                    success:function(data){
+                        $('tbody').html(data);
+                    }
+                });
+            })
+        </script>
+        -->
                     <!-- Return tasks -->
+                  <div class="row">
                      <div class="col-md-push-8 col-md-offset-2">
                          <div class="panel panel-default">
                             <div class="panel-heading">
@@ -72,11 +107,9 @@
                                 </div>
                          </div>
                      </div>
-            </div>
-        </div>
-    </div>
-
-
-
+                  </div>
+        <script type="text/javascript">
+            $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+        </script>
 
 @endsection

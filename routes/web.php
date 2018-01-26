@@ -15,13 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
 
 Route::get('/tasks', function (){
     return view('tasks');
@@ -31,5 +27,5 @@ Route::get('/home', 'TaskController@returnAllTasks');
 
 Route::post('/taskCreate', 'TaskController@create');
 Route::any('/deleteTask/{id}', ['as' => 'delete-task', 'uses' => 'TaskController@delete']);
-//Route::post('/task', function (){});
 
+Route::get('/search', 'searchController@searchUp');
