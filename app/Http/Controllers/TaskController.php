@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http;
+//use App\Http;
 use App\User;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
-use App\Services\Auth\JwtGuard;
-
+//use App\Services\Auth\JwtGuard;
+use Illuminate\Mail\Mailer;
 
 
 class TaskController extends Controller
@@ -29,12 +29,14 @@ class TaskController extends Controller
                'title',
                'description',
                'dateTime',
-               'email_us'
+               'email_us',
+
             ]);
            // dd($input);
-            dd(Auth::user());
+            //dd(Auth::user());
             $task = new Task;
-            $task -> user_id = Auth::user()->attributes['email'];
+            $task -> user_email = Auth::user()->email;
+            $task -> user_id = Auth::id();
             $task -> title = $input['title'];
             $task -> description = $input['description'];
             $task -> time = $input['dateTime'];
@@ -42,8 +44,16 @@ class TaskController extends Controller
             $task ->save();
             return back();
         }
-        return redirect('/home');
+        return "Error....";
     }
+
+   /* public function mail(Request $request, Mailer $mailer  )
+    {
+        $mailer
+            ->to($request->input('receiver'))
+            ->send(new \App\Mail\notification($request->input('name')));
+        return redirect()->back();
+    }*/
 
     public function delete(Request $request)
     {
@@ -72,7 +82,7 @@ class TaskController extends Controller
     }
     public function returnAllTasks(){
         if(Auth::check()){
-            $user_id = Auth::id();
+            //$user_id = Auth::id();
             $dataAll = Task::all()->toArray();
             $users = User::all()->toArray();
             return view('home', ['dataAll'=> $dataAll, 'users'=> $users]);
