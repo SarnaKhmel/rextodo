@@ -48,71 +48,70 @@
             </div>
         </div>
                     <!--Search tasks-->
-        <form action="/search" method="POST" role="search">
-            {{ csrf_field() }}
-            <div class="input-group">
-                <input type="text" class="form-control" name="searchTitle"
-                       placeholder="Search tasks"> <span class="input-group-btn">
-            <button type="submit" class="btn btn-default">
-                <span class="glyphicon glyphicon-search"></span>
-            </button>
-        </span>
-            </div>
-        </form>
-
-        <div class="container">
-            @if(isset($details))
-                <p> The Search results for your query <b> {{ $query }} </b> are :</p>
-                <h2>Sample User details</h2>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Discroption</th>
-                        <th>Time</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($details as $title)
+        <div class=" col-md-8 col-md-offset-2">
+            <form action="/search" method="POST" role="search">
+                {{ csrf_field() }}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="searchTitle"
+                           placeholder="Search tasks"> <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+                </div>
+            </form>
+            <div class="container">
+                @if(isset($details))
+                    <p> The Search results for your query <b> {{ $query }} </b> are :</p>
+                    <h2>Sample User details</h2>
+                    <table class="table table-striped">
+                        <thead>
                         <tr>
-                            <td>{{$title->name}}</td>
+                            <th>Title</th>
+                            <th>Discroption</th>
+                            <th>Time</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            @endif
+                        </thead>
+                        <tbody>
+                        @foreach($details as $title)
+                            <tr>
+                                <td>{{$title->name}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                @endif
+            </div>
         </div>
-
 
                     <!-- Return tasks -->
                   <div class="row">
-                     <div class="col-md-push-8 col-md-offset-2">
-                         <div class="panel panel-default">
+                     <div class=" col-md-8 col-md-offset-2">
+
                             <div class="panel-heading">
                                 Current Tasks
                             </div>
                                 <div class="panel-body">
                                     @foreach($dataAll as $returnTasks)
-
+                                        <div class="panel panel-default">
                                         <form action="{{ route('delete-task', ['id' => $returnTasks['id']]) }}" method="post">
                                             {{ csrf_field() }}
                                             <li id="{{$returnTasks["id"]}}" >
-                                                <div class="col-md-offset-1 buttons">
-                                                    <div class="title"><strong>Title: <span class="text"> {{$returnTasks['title']}}</span></strong>
+                                              <div class="col-md-offset-1 buttons">
+                                                  <!-- <div class="title"><strong>Title: <span class="text"> {{$returnTasks['title']}}</span></strong>
                                                         <button type="submit" class="btn btn-danger pull-right">Delete</button>
                                                     </div>
+                                                    -->
                                                     <div class="description">Descroption: <span class="text"> {{$returnTasks['description']}}</span></div>
                                                     <div class="user">From user: <span class="text"> {{$returnTasks['user_email']}}</span> </div>
                                                     <div class="user_em">For user: <span class="text">{{$returnTasks['email_us']}}</span> </div>
                                                     <div class="deadline">Deadline: <span class="text"> {{$returnTasks['time']}}</span></div>
-                                                </div>
+                                              </div>
                                             </li>
                                         </form>
+                                        </div>
                                     @endforeach
                                 </div>
                          </div>
                      </div>
-                  </div>
-
-
 @endsection

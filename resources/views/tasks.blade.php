@@ -4,7 +4,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/locales.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.css"></script>
-
     <div class="container">
         <a href="{{ url('/home') }}">
             <button type="submit" class="btn btn-default" >
@@ -13,10 +12,10 @@
         </a>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
+              <div class=" panel panel-body">
                 <div class="panel-heading"><strong>My tasks</strong>
                     <br><label for="task-name" class="control-label"> </label>
                     <!--add task-->
-
                     <div action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
                         <div class="col-md-10 ">
                             <form action="{{ url('taskCreate')}}" method="POST" class="form-horizontal"> {{csrf_field()}}
@@ -46,36 +45,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7">
-                    <ul class="todo-list ui-sortable">
-                        @foreach($data as $returnTasks)
-                                {{ csrf_field() }}
-                                <li id="{{$returnTasks["id"]}}" >
-                                    <div class="col-md-offset-1 buttons">
-                                        <div class="title"><strong>Title: <span class="text"> {{$returnTasks['title']}}</span></strong></div>
-                                            <div class="pull-right">
-                                                <form action="{{ route('delete-task', ['id' => $returnTasks['id']]) }}" method="post">
-                                                    <button type="submit" class="btn btn-danger pull-right">Delete</button>
-                                                </form> <br>
-                                                <form action="{{ route('send-mail', ['id' => $returnTasks['id']])}}" method="post">
-                                                    <button type="submit" class="btn btn-default pull-right"> Send mail </button>
-                                                </form>
-                                            </div>
-                                        <div class="description">Descroption: <span class="text"> {{$returnTasks['description']}}</span></div>
-                                        <div class="user">From user: <span class="text"> {{$returnTasks['user_email']}}</span> </div>
-                                        <div class="user_em">For user: <span class="text">{{$returnTasks['email_us']}}</span> </div>
-                                        <div class="deadline">Deadline: <span class="text"> {{$returnTasks['time']}}</span></div>
-                                    </div>
-                                </li>
-                        @endforeach
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="panel-body">
-    </div>
-@endsection
+<!-- return tasks-->
+
+                    <div class=" col-md-8 col-md-offset-2">
+                        <div class="panel-heading">
+                                Current Tasks
+                            </div>
+                           @foreach($data as $returnTasks)
+                            <div class="panel panel-body">
+                                    <form action="{{ route('delete-task', ['id' => $returnTasks['id']]) }}" method="post">
+                                        {{ csrf_field() }}
+                                        <li id="{{$returnTasks["id"]}}" >
+                                            <div class="col-md-offset-1 buttons">
+                                                <div class="title"><strong>Title: <span class="text"> {{$returnTasks['title']}}</span></strong>
+                                                    <button type="submit" class="btn btn-danger pull-right">Delete</button>
+                                                </div>
+
+                                                <div class="description">Descroption: <span class="text"> {{$returnTasks['description']}}</span></div>
+                                                <div class="user">From user: <span class="text"> {{$returnTasks['user_email']}}</span> </div>
+                                                <div class="user_em">For user: <span class="text">{{$returnTasks['email_us']}}</span> </div>
+                                                <div class="deadline">Deadline: <span class="text"> {{$returnTasks['time']}}</span></div>
+                                                <form action="{{ route('send-mail', ['id' => $returnTasks['id']])}}" method="post">
+                                                    <button type="submit" class="btn btn-default btn-sm pull-right"> Send mail </button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </form>
+                            </div>
+                            @endforeach
+                            </div>
+                        </div>
+                    </div>
+  @endsection
+
 
 
 

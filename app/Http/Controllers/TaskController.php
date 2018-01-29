@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use App\Http;
+use App\Http;
 use App\User;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
-//use App\Services\Auth\JwtGuard;
+use App\Services\Auth\JwtGuard;
 use Illuminate\Mail\Mailer;
 
 
@@ -82,7 +82,7 @@ class TaskController extends Controller
     }
     public function returnAllTasks(){
         if(Auth::check()){
-            //$user_id = Auth::id();
+            $user_id = Auth::id();
             $dataAll = Task::all()->toArray();
             $users = User::all()->toArray();
             return view('home', ['dataAll'=> $dataAll, 'users'=> $users]);
