@@ -28,7 +28,8 @@ Route::get('/home', 'TaskController@returnAllTasks');
 Route::post('/taskCreate', 'TaskController@create');
 Route::any('/deleteTask/{id}', ['as' => 'delete-task', 'uses' => 'TaskController@delete']);
 
-Route::any('/sendMail/{id}',['as'=>'send-mail', 'uses' =>'TasksController@send']);
+//Route :: post('/sendMail/{id}', ['as' => 'send-mail', 'mail' => 'TaskController@sendMail']);
+Route::post('/sendmail', 'TaskController@sendMail')->name('sendmail');
 
 /*Route::any('/search', function(){
     $searchTitle = Input::get('title');

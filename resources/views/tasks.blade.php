@@ -64,14 +64,11 @@
                                                 <div class="title"><strong>Title: <span class="text"> {{$returnTasks['title']}}</span></strong>
                                                     <button type="submit" class="btn btn-danger pull-right">Delete</button>
                                                 </div>
-
                                                 <div class="description">Descroption: <span class="text"> {{$returnTasks['description']}}</span></div>
                                                 <div class="user">From user: <span class="text"> {{$returnTasks['user_email']}}</span> </div>
                                                 <div class="user_em">For user: <span class="text">{{$returnTasks['email_us']}}</span> </div>
                                                 <div class="deadline">Deadline: <span class="text"> {{$returnTasks['time']}}</span></div>
-                                                <form action="{{ route('send-mail', ['id' => $returnTasks['id']])}}" method="post">
-                                                    <button type="submit" class="btn btn-default btn-sm pull-right"> Send mail </button>
-                                                </form>
+
                                             </div>
                                         </li>
                                     </form>

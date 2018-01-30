@@ -7,7 +7,6 @@ use App\Http;
 use App\User;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
-use App\Services\Auth\JwtGuard;
 use Illuminate\Mail\Mailer;
 
 
@@ -21,7 +20,7 @@ class TaskController extends Controller
     }
 
 
-    public function create(Request $request)
+    public function create(Request $request, Mailer $mailer)
     {
         //dd(Auth::user()->);
         if(Auth::check()){
@@ -42,18 +41,23 @@ class TaskController extends Controller
             $task -> time = $input['dateTime'];
             $task -> email_us = $input['email_us'];
             $task ->save();
+
+            $this->sendMail($request,$mailer);
+
             return back();
+
+
         }
         return "Error....";
     }
 
-   /* public function mail(Request $request, Mailer $mailer  )
-    {
-        $mailer
-            ->to($request->input('receiver'))
-            ->send(new \App\Mail\notification($request->input('name')));
+    public function sendMail($request, $mailer){
+           $mailer
+            ->to($request->input('email_us'))
+            ->send(new \App\Mail\myMails($request->input('email_us')));
         return redirect()->back();
-    }*/
+    }
+
 
     public function delete(Request $request)
     {
@@ -89,4 +93,5 @@ class TaskController extends Controller
         }
         return "Error....";
     }
+
 }
