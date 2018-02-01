@@ -8,7 +8,9 @@
     <title>email</title>
 </head>
 <body>
-<h1>You got new task</h1>
+<h1>You got new task!</h1>
 <p>{{$email_us}}</p>
+<p>Begin to perform tasks. </p>
+
 </body>
 </html>

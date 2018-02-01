@@ -71,9 +71,8 @@ class TaskController extends Controller
           }
           return response('Error! ');
           }
-
-
     }
+
     public function returnMyTasks(){
 
         if (Auth::check()){
