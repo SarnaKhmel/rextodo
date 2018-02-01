@@ -2,8 +2,12 @@
 
 namespace App\Console;
 
+use App\Task;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\Log;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +17,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        '\App\Console\Commands\DeleteInActiveUsers',
+        Commands\DeleteInActiveUsers::class,
+        Commands\SendMails::class,
     ];
 
     /**
@@ -24,8 +29,22 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('DeleteInActiveUsers')
-                  ->everyMinute();
+        //$schedule->command(Commands\DeleteInActiveUsers::class)
+          //          ->everyMinute();
+        //$schedule->command(Commands\SendMails::class)
+          //          ->cron('* * * * *');
+
+        $schedule->call(function (){
+            foreach (Task::all()->where('time','=', Carbon::tomorrow()->toDateString()) as $title){
+                $to = $title->user()->value('email_us');
+                Mail::send('mails.reminderMail',['title' => $title->title], function ($message) use ($to)
+                {
+                    $message->from('AdminOlsa@example.com');
+                    $message->to($to);
+                });
+            }
+
+        })->everyMinute();
     }
 
     /**
@@ -35,7 +54,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-       // $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
     }
