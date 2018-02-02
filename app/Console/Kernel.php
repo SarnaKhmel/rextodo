@@ -30,11 +30,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         //$schedule->command(Commands\DeleteInActiveUsers::class)
-          //          ->everyMinute();
-        //$schedule->command(Commands\SendMails::class)
-          //          ->cron('* * * * *');
+                 //   ->everyMinute();
+        $schedule->command(Commands\SendMails::class)
+                    ->cron('* * * * *');
 
-        $schedule->call(function (){
+       /* $schedule->call(function (){
             foreach (Task::all()->where('time','=', Carbon::tomorrow()->toDateString()) as $title){
                 $to = $title->user()->value('email_us');
                 Mail::send('mails.reminderMail',['title' => $title->title], function ($message) use ($to)
@@ -45,6 +45,7 @@ class Kernel extends ConsoleKernel
             }
 
         })->everyMinute();
+       */
     }
 
     /**
